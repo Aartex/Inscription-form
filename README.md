@@ -1,4 +1,5 @@
 inscription form
+
 Vous veillerez a corectement structurer votre code, vous respecterez les normes de developpement (utilisation de l'anglais pour les nom de variable, fonction etc) n'hésitez pas à commenter vos codes
 
 ex 1 :
