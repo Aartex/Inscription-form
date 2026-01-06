@@ -88,7 +88,7 @@ span {
 
 .article-panier {
     background-color: white;
-    max-width: 400px;
+    max-height: 12em;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
