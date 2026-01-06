@@ -3,11 +3,24 @@
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: #f4f7f6;
+    background-image: url(banderole.jpg);
+    padding: 40px 20px;
+    margin: 0;
+    align-items: flex-start;
     padding: 40px 20px;
     margin: 0;
 }
 
-/* EN-TETE */
+/* FORMULAIRE */
+
+.container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    width: 100%;
+}
 
 h1 {
     color: #334e68;
@@ -18,20 +31,30 @@ h1 {
     font-size: 1.8em;
 }
 
-/* FORMULAIRE */
-
 h2 {
     color: #334e68;
     text-align: center;
-    margin: auto;
-    padding: auto;
-    padding-bottom: 30px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    font-size: 1.8em;
+}
+
+h3 {
+    color: #5d9cec;
+    text-align: center;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    font-size: 1.5em;
 }
 
 fieldset {
     border: 1px solid #dcdcdc;
     margin-bottom: 25px;
     border-radius: 8px;
+}
+
+fieldset:hover {
+    border-color: #5d9cec;
 }
 
 legend {
@@ -41,34 +64,84 @@ legend {
     font-size: 1.1em;
 }
 
+.section-identite legend { background-color: #e6f7ff; padding: 5px 15px; border-radius: 5px; }
+.section-contact legend { background-color: #e6f7ff; padding: 5px 15px; border-radius: 5px; }
+.section-epreuve legend { background-color: #e6f7ff; padding: 5px 15px; border-radius: 5px; }
+.section-panier legend { background-color: #e6f7ff; padding: 5px 15px; border-radius: 5px; }
+
+
 .paragraphes {
-    color: #334e68;
-    font-size: 0.5em;
+    font-size: 0.7em;
+    color: #777;
+    margin-bottom: 15px;
 }
 
-.formulaire {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 7em;
+.form-group {
+    margin-bottom: 15px;
 }
 
-div {
-    margin-top: 15px;
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: 500;
 }
 
-button {
-    background-color: #5d9cec;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d9d9d9;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
     font-size: 1em;
 }
 
-button:hover {
-    background-color: #4a8ad4;
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #5d9cec;
+    box-shadow: 0 0 5px rgba(93, 156, 236, 0.5);
+    outline: none;
+}
+
+button[type="submit"] {
+    background-color: #5d9cec;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button[type="button"] {
+    background-color: #5d9cec;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button[type="submit"]:hover {
+    background-color: #407ac9;
+    transform: translateY(-2px);
+}
+
+button[type="button"]:hover {
+    background-color: #407ac9;
+    transform: translateY(-2px);
 }
 
 span {
@@ -77,20 +150,13 @@ span {
     margin-left: 5px;
 }
 
-.article-formulaire {
-    max-width: 800px;
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
 /* PANIER */
 
 .article-panier {
-    background-color: white;
-    max-height: 12em;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    width: 100%;
 }
