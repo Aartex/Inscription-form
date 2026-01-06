@@ -7,13 +7,25 @@ body {
     margin: 0;
 }
 
+/* EN-TETE */
+
 h1 {
     color: #334e68;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     border-bottom: 2px solid #5d9cec;
     padding-bottom: 10px;
     font-size: 1.8em;
+}
+
+/* FORMULAIRE */
+
+h2 {
+    color: #334e68;
+    text-align: center;
+    margin: auto;
+    padding: auto;
+    padding-bottom: 30px;
 }
 
 fieldset {
@@ -21,7 +33,6 @@ fieldset {
     padding: 20px;
     margin-bottom: 25px;
     border-radius: 8px;
-    transition: border-color 0.3s;
 }
 
 legend {
@@ -31,7 +42,38 @@ legend {
     font-size: 1.1em;
 }
 
+.paragraphes {
+    color: #334e68;
+    font-size: 0.5em;
+}
+
 .formulaire {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+}
+
+div {
+    margin-top: 15px;
+}
+
+button {
+    background-color: #5d9cec;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #4a8ad4;
+}
+
+span {
+    color: red;
+    font-size: 0.9em;
+    margin-left: 5px;
 }
