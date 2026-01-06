@@ -6,3 +6,32 @@ body {
     padding: 40px 20px;
     margin: 0;
 }
+
+h1 {
+    color: #334e68;
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #5d9cec;
+    padding-bottom: 10px;
+    font-size: 1.8em;
+}
+
+fieldset {
+    border: 1px solid #dcdcdc;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+}
+
+legend {
+    color: #5d9cec;
+    font-weight: bold;
+    padding: 0 10px;
+    font-size: 1.1em;
+}
+
+.formulaire {
+    display: flex;
+    flex-direction: row;
+}
