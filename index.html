@@ -23,85 +23,86 @@
             <h2>Formulaire d'inscription</h2>
         </section>
         <section class="formulaire">
-            <article>
-            <fieldset class="section-identite">
-                <legend>Participant 1</legend>
-                <p class="paragraphes">Veuillez renseigner vos informations personnelles.<br>Les champs marqués d'un astérisque (*) sont obligatoires.</p>
-                <form>
-                    <div class="form-group">
-                        <label for="nom">
-                            Nom
-                            <span class="required">*</span>
-                        </label>
-                        <input type="text" id="nom" name="nom" placeholder="Ex: Legrand" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="prenom">
-                            Prénom
-                            <span class="required">*</span>
-                        </label>
-                        <input type="text" id="prenom" name="prenom" placeholder="Ex: Jean" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="age">
-                            Âge
-                            <span class="required">*</span>
-                        </label>
-                        <input type="number" id="age" name="age" min="18" max="99" placeholder="Ex: 25" required>
-                    </div>
-
-                    <!-- COORDONNEES -->
-
-                    <div class="form-group">
-                        <label for="email">
-                            E-mail
-                            <span class="required">*</span>
-                        </label>
-                        <input type="email" id="email" name="email" placeholder="Ex: votre@email.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="tel">
-                            Téléphone
-                            <span class="required">*</span>
-                        </label>
-                        <input type="tel" id="tel" name="tel" pattern="[0-9]{10}" placeholder="Ex: 0601020304" required>
-                    </div>
-
-                    <!-- EPREUVE -->
-
-                    <div class="form-group">
-                        <label>
-                            Épreuve choisie
-                            <span class="required">*</span>
-                        </label>
-                        <div class="radio-group">
-                            <label style="font-weight: normal;">
-                                <input type="radio" name="epreuve" value="semi">
-                                Semi-marathon
+            <article class="article-formulaire">
+                <fieldset class="section-identite">
+                    <legend>Votre participation</legend>
+                    <p class="paragraphes">Veuillez renseigner vos informations personnelles.<br>Les champs marqués d'un
+                        astérisque (*) sont obligatoires.</p>
+                    <form>
+                        <div class="form-group">
+                            <label for="nom">
+                                Nom
+                                <span class="required">*</span>
                             </label>
-                            <label style="font-weight: normal;">
-                                <input type="radio" name="epreuve" value="classique">
-                                Marathon classique
+                            <input type="text" id="nom" name="nom" placeholder="Ex: Legrand" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prenom">
+                                Prénom
+                                <span class="required">*</span>
                             </label>
-                        </div> 
-                    </div>
-            </fieldset>
-            <button type="submit" class="btn-submit">Ajouter un participant</button>
+                            <input type="text" id="prenom" name="prenom" placeholder="Ex: Jean" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">
+                                Âge
+                                <span class="required">*</span>
+                            </label>
+                            <input type="number" id="age" name="age" min="18" max="99" placeholder="Ex: 25" required>
+                        </div>
+
+                        <!-- COORDONNEES -->
+
+                        <div class="form-group">
+                            <label for="email">
+                                E-mail
+                                <span class="required">*</span>
+                            </label>
+                            <input type="email" id="email" name="email" placeholder="Ex: votre@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tel">
+                                Téléphone
+                                <span class="required">*</span>
+                            </label>
+                            <input type="tel" id="tel" name="tel" pattern="[0-9]{10}" placeholder="Ex: 0601020304"
+                                required>
+                        </div>
+
+                        <!-- EPREUVE -->
+
+                        <div class="form-group">
+                            <label>
+                                Épreuve choisie
+                                <span class="required">*</span>
+                            </label>
+                            <div class="radio-group">
+                                <label style="font-weight: normal;">
+                                    <input type="radio" name="epreuve" value="semi">
+                                    Semi-marathon
+                                </label>
+                                <label style="font-weight: normal;">
+                                    <input type="radio" name="epreuve" value="classique">
+                                    Marathon classique
+                                </label>
+                            </div>
+                        </div>
+                </fieldset>
+                <button type="submit" class="btn-submit">Ajouter un participant</button>
             </article>
             </form>
 
             <!-- PANIER -->
-            <article>
-            <fieldset class="section-panier">
 
-                <legend>Votre panier</legend>
-                <p>Nombre de participants : 1</p>
-                <p>Montant total : 90 €</p>
+            <article class="article-panier">
+                <fieldset class="section-panier">
+                    <legend>Votre panier</legend>
+                    <p>Nombre de participants : 1</p>
+                    <p>Montant total : 90 €</p>
+                </fieldset>
                 <button type="button" class="btn-panier">Valider</button>
                 <button type="button" class="btn-panier">Valider & payer</button>
                 <button type="button" class="btn-panier">Annuler</button>
-
-            </fieldset>
             </article>
         </section>
     </main>
