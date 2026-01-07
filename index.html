@@ -26,87 +26,89 @@
               <h3>VOTRE PARTICIPATION</h3>
             </div>
             <!-- IDENTITE -->
-            <fieldset class="section-identite">
-              <legend>Informations d'identité</legend>
-              <p class="paragraphes">
-                Veuillez renseigner vos informations personnelles. Les champs
-                marqués d'un astérisque (
-                <span class="required">*</span>
-                ) sont obligatoires.
-              </p>
-              <div class="form-group">
-                <label for="nom">Nom :
+            <div class = "participant-block">
+              <fieldset class="section-identite">
+                <legend>Informations d'identité</legend>
+                <p class="paragraphes">
+                  Veuillez renseigner vos informations personnelles. Les champs
+                  marqués d'un astérisque (
                   <span class="required">*</span>
-                </label>
-                <input type="text" id="nom" name="nom" required aria-required="true" placeholder="Ex: Martin" />
-              </div>
-              <div class="form-group">
-                <label for="prenom">Prénom :
-                  <span class="required">*</span>
-                </label>
-                <input type="text" id="prenom" name="prenom" required aria-required="true" placeholder="Ex: Jean" />
-              </div>
-              <div class="form-group">
-                <label for="age">Âge :
-                  <span class="required">*</span>
-                </label>
-                <select id="age" name="age" required aria-required="true">
-                  <option value="">Sélectionnez votre âge</option>
-                </select>
-              </div>
-            </fieldset>
-            <!-- COORDONNEES -->
-            <fieldset class="section-contact">
-              <legend>Coordonnées</legend>
-              <div class="form-group">
-                <label for="email">Adresse E-mail :
-                  <span class="required">*</span>
-                </label>
-                <input type="email" id="email" name="email" required aria-required="true"
-                  placeholder="Ex: nomprenom@xxx.com" />
-              </div>
-              <div class="form-group">
-                <label for="telephone">Numéro de Téléphone :
-                  <span class="required">*</span>
-                </label>
-                <input type="tel" id="telephone" name="telephone" placeholder="Ex: 0600000000" />
-              </div>
-            </fieldset>
-            <!-- EPREUVE -->
-            <fieldset class="section-epreuve">
-              <legend>Épreuve choisie</legend>
-              <div class="form-group">
-                <label>Choisissez votre épreuve :
-                  <span class="required">* </span>
-                </label>
-                <div class="radio-group">
-                  <label style="font-weight: normal">
-                    <input type="radio" name="epreuve" value="semi" />
-                    Semi-marathon (90 €)
+                  ) sont obligatoires.
+                </p>
+                <div class="form-group">
+                  <label for="nom">Nom :
+                    <span class="required">*</span>
                   </label>
-                  <label style="font-weight: normal">
-                    <input type="radio" name="epreuve" value="classique" />
-                    Marathon classique (120 €)
-                  </label>
+                  <input type="text" id="nom" name="nom" required aria-required="true" placeholder="Ex: Martin" />
                 </div>
+                <div class="form-group">
+                  <label for="prenom">Prénom :
+                    <span class="required">*</span>
+                  </label>
+                  <input type="text" id="prenom" name="prenom" required aria-required="true" placeholder="Ex: Jean" />
+                </div>
+                <div class="form-group">
+                  <label for="age">Âge :
+                    <span class="required">*</span>
+                  </label>
+                  <select id="age" name="age" required aria-required="true">
+                    <option value="">Sélectionnez votre âge</option>
+                  </select>
+                </div>
+              </fieldset>
+              <!-- COORDONNEES -->
+              <fieldset class="section-contact">
+                <legend>Coordonnées</legend>
+                <div class="form-group">
+                  <label for="email">Adresse E-mail :
+                    <span class="required">*</span>
+                  </label>
+                  <input type="email" id="email" name="email" required aria-required="true"
+                    placeholder="Ex: nomprenom@xxx.com" />
+                </div>
+                <div class="form-group">
+                  <label for="telephone">Numéro de Téléphone :
+                    <span class="required">*</span>
+                  </label>
+                  <input type="tel" id="telephone" name="telephone" placeholder="Ex: 0600000000" />
+                </div>
+              </fieldset>
+              <hr> </div> 
+              <!-- EPREUVE -->
+              <fieldset class="section-epreuve">
+                <legend>Épreuve choisie</legend>
+                <div class="form-group">
+                  <label>Choisissez votre épreuve :
+                    <span class="required">* </span>
+                  </label>
+                  <div class="radio-group">
+                    <label style="font-weight: normal">
+                      <input type="radio" name="epreuve" value="semi"/>
+                      Semi-marathon (90 €)
+                    </label>
+                    <label style="font-weight: normal">
+                      <input type="radio" name="epreuve" value="classique"/>
+                      Marathon classique (120 €)
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+              <div class="button-form">
+                <button type="button" class="valider">
+                  Valider mon inscription
+                </button>
+                <button type="button" class="equipe">
+                  Inscription en équipe ?
+                </button>
               </div>
-            </fieldset>
-            <div class="button-form">
-              <button type="submit" class="valider">
-                Valider mon inscription
-              </button>
-              <button type="submit" class="participant">
-                Ajouter un participant
-              </button>
-            </div>
-          </article>
+            </article>
           <!-- PANIER -->
           <article class="article-panier">
             <fieldset class="section-panier">
               <legend>Votre panier</legend>
               <div class="form-group">
-                <p>Nombre de participants : 1</p>
-                <p>Montant total : 90 €</p>
+                <p id="participants">Nombre de participants : 1</p>
+                <p id="montant">Montant total : 0€</p>
               </div>
             </fieldset>
             <div class="button-panier">

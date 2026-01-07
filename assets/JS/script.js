@@ -2,14 +2,90 @@ for (let i = 16; i <= 99; i++) {
     document.getElementById('age').innerHTML += '<option value="' + i + '">' + i + ' ans</option>';
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("form");
-    const addParticipantBtn = document.querySelector(".participant");
-    const containerParent = document.querySelector(".formulaire");
-    const panierInfos = document.querySelector(".section-panier .form-group");
-    const prixSemiMarathon = 90;
-    const prixMarathonClassique = 120;
+const btnAjouter = document.querySelector(".equipe");
+const formContainer = document.querySelector(".container");
+const buttonGroup = document.querySelector(".button-form");
 
-    let participantCount = 1;
+btnAjouter.addEventListener("click", () => {
 
+    // 1. Changement du texte du bouton au premier clic
+    if (btnAjouter.textContent.includes("équipe")) {
+        btnAjouter.textContent = "Ajouter un participant" ;
+    }
+
+    //On cible le bloc complet d'un participant
+    const blocACloner = document.querySelector(".participant-block");
+    
+    if (!blocACloner) return;
+
+    // On clone le bloc
+    const clone = blocACloner.cloneNode(true);
+    const uniqueId = Date.now();
+
+    // Nettoyage et sécurisation du clone
+    const inputs = clone.querySelectorAll("input, select");
+    
+    inputs.forEach(input => {
+        // IMPORTANT : On change ou supprime l'ID pour éviter les conflits
+        if (input.id) {
+            input.id = input.id + "_" + uniqueId;
+        }
+
+        if (input.type === "radio") {
+            // On désélectionne dans le clone
+            input.checked = false;
+            // On donne un nom unique au groupe pour ce participant
+            input.name = "epreuve_" + uniqueId; 
+        } else if (input.tagName === "SELECT") {
+            input.selectedIndex = 0;
+        } else {
+            input.value = "";
+        }
+    });
+
+    // Correction des labels (pour qu'ils pointent vers les nouveaux IDs)
+    const labels = clone.querySelectorAll("label");
+    labels.forEach(label => {
+        const forAttribute = label.getAttribute("for");
+        if (forAttribute) {
+            label.setAttribute("for", forAttribute + "_" + uniqueId);
+        }
+    });
+
+    // Insertion
+    formContainer.insertBefore(clone, buttonGroup);
+    mettreAJourPanier();
 });
+
+function mettreAJourPanier() {
+    // 1. Compter tous les blocs de participants présents
+    const nombreParticipants = document.querySelectorAll(".participant-block").length;
+    
+    // 2. Chercher la radio cochée dans tout le document
+    const choix = document.querySelector('input[name="epreuve"]:checked');
+    let prixUnitaire = 0;
+    
+    if (choix) {
+        const valeur = choix.value;
+        prixUnitaire = (valeur === "semi") ? 90 : 120;
+    }
+
+    // 3. Calcul total
+    const totalPrix = nombreParticipants * prixUnitaire;
+
+    // 4. Mise à jour de l'affichage
+    document.querySelector("#participants").textContent = `Nombre de participants : ${nombreParticipants}`;
+    document.querySelector("#montant").textContent = `Montant total : ${totalPrix}€`;
+}
+
+// On s'assure que le calcul se met à jour quand on change d'épreuve
+// OU quand on ajoute un participant
+document.addEventListener("change", (e) => {
+    if (e.target.name === "epreuve") {
+        mettreAJourPanier();
+    }
+});
+
+// Appeler le calcul initial au chargement
+mettreAJourPanier();
+
