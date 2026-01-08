@@ -23,10 +23,6 @@ form {
 
 main {
     border-top: 2px solid #5d9cec;
-    background-image: url("/assets/img/banderole.jpg");
-    background-color: rgba(255, 255, 255, 0.5);
-    background-blend-mode: screen;
-    padding-top: 0.5em;
 }
 
 .container {
