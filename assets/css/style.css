@@ -63,6 +63,7 @@ h3 {
     flex-direction: row;
     justify-content: center;
     gap: 3em;
+    align-items: flex-start;
 }
 
 fieldset {
@@ -186,12 +187,16 @@ span {
 }
 
 .button-form {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
     text-align: center;
 }
 
 /* PANIER */
 
 .article-panier {
+    text-align: center;
     background-color: #ffffff;
     padding: 30px 40px;
     border-radius: 12px;
@@ -199,6 +204,9 @@ span {
     max-width: 700px;
     width: 100%;
     max-height: 13em;
+    position: sticky;
+    top: 400px; /* Le panier s'arrêtera à 20px du bord haut de la fenêtre */
+    z-index: 100; /* S'assure qu'il passe au-dessus des autres éléments si besoin */
 }
 
 .button-panier {

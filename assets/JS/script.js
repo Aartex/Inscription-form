@@ -1,123 +1,82 @@
-for (let i = 16; i <= 99; i++) {
-    document.getElementById('age').innerHTML += '<option value="' + i + '">' + i + ' ans</option>';
-}
+document.addEventListener("DOMContentLoaded", () => {
+    const btnAjouter = document.querySelector(".equipe");
+    const btnSup = document.querySelector(".supprime");
+    const formContainer = document.querySelector(".container");
+    const buttonGroup = document.querySelector(".button-form");
 
-const btnAjouter = document.querySelector(".equipe");
-const formContainer = document.querySelector(".container");
-const buttonGroup = document.querySelector(".button-form");
+    // 1. Fonction de mise à jour du panier
+    function mettreAJourPanier() {
+        // On compte tous les blocs de participants (nom, prénom, etc.)
+        const nombreParticipants = document.querySelectorAll(".participant-block").length;
 
-btnAjouter.addEventListener("click", () => {
+        // On cherche le choix de l'épreuve (qui n'existe qu'une seule fois dans le HTML)
+        const choix = document.querySelector('input[name="epreuve"]:checked');
+        
+        let prixUnitaire = 0;
+        if (choix) {
+            prixUnitaire = (choix.value === "semi") ? 90 : 120;
+        }
 
-    // 1. Changement du texte du bouton au premier clic
-    if (btnAjouter.textContent.includes("équipe")) {
-        btnAjouter.textContent = "Ajouter un participant";
+        // Calcul : Prix de l'épreuve X nombre de personnes
+        const totalPrix = nombreParticipants * prixUnitaire;
+
+        // Mise à jour de l'affichage
+        document.querySelector("#participants").textContent = `Nombre de participants : ${nombreParticipants}`;
+        document.querySelector("#montant").textContent = `Montant total : ${totalPrix}€`;
     }
 
-    //On cible le bloc complet d'un participant
-    const blocACloner = document.querySelector(".participant-block");
-
-    if (!blocACloner) return;
-
-    // On clone le bloc
-    const clone = blocACloner.cloneNode(true);
-    const uniqueId = Date.now();
-
-    // Nettoyage et sécurisation du clone
-    const inputs = clone.querySelectorAll("input, select");
-
-    inputs.forEach(input => {
-        // IMPORTANT : On change ou supprime l'ID pour éviter les conflits
-        if (input.id) {
-            input.id = input.id + "_" + uniqueId;
+    // 2. Ajouter un participant
+    btnAjouter.addEventListener("click", () => {
+        // Changement du texte du bouton
+        if (btnAjouter.textContent.includes("équipe")) {
+            btnAjouter.textContent = "Ajouter un participant";
         }
 
-        if (input.type === "radio") {
-            // On désélectionne dans le clone
-            input.checked = false;
-            // On donne un nom unique au groupe pour ce participant
-            input.name = "epreuve_" + uniqueId;
-        } else if (input.tagName === "SELECT") {
-            input.selectedIndex = 0;
-        } else {
+        const blocACloner = document.querySelector(".participant-block");
+        const clone = blocACloner.cloneNode(true);
+        const uniqueId = Date.now();
+
+        // Nettoyage du clone
+        clone.querySelectorAll("input, select").forEach(input => {
+            if (input.id) input.id += "_" + uniqueId;
             input.value = "";
+        });
+
+        // Insertion avant les boutons
+        formContainer.insertBefore(clone, buttonGroup);
+        mettreAJourPanier();
+    });
+
+// 3. Supprimer le DERNIER participant
+btnSup.addEventListener("click", () => {
+    const blocs = document.querySelectorAll(".participant-block");
+    
+    // On ne supprime que s'il reste plus d'un bloc
+    if (blocs.length > 1) {
+        // Supprime le dernier bloc
+        blocs[blocs.length - 1].remove();
+
+        // --- AJOUT ICI ---
+        // Si après suppression il ne reste qu'un seul bloc, on remet le texte initial
+        const blocsRestants = document.querySelectorAll(".participant-block");
+        if (blocsRestants.length === 1) {
+            btnAjouter.textContent = "Inscription en équipe ?";
+        }
+        // -----------------
+
+        mettreAJourPanier();
+    } else {
+        alert("Il doit y avoir au moins un participant.");
+    }
+});
+
+    // 4. Écouter le changement d'épreuve (radio)
+    document.addEventListener("change", (e) => {
+        if (e.target.name === "epreuve") {
+            mettreAJourPanier();
         }
     });
 
-    // Correction des labels (pour qu'ils pointent vers les nouveaux IDs)
-    const labels = clone.querySelectorAll("label");
-    labels.forEach(label => {
-        const forAttribute = label.getAttribute("for");
-        if (forAttribute) {
-            label.setAttribute("for", forAttribute + "_" + uniqueId);
-        }
-    });
-
-    // Insertion
-    formContainer.insertBefore(clone, buttonGroup);
+    // Initialisation
     mettreAJourPanier();
 });
-
-function mettreAJourPanier() {
-    // 1. Compter tous les blocs de participants présents
-    const nombreParticipants = document.querySelectorAll(".participant-block").length;
-
-    // On force le script à regarder UNIQUEMENT le choix du premier participant
-    const premierBloc = document.querySelector(".participant-block");
-    const choix = premierBloc.querySelector('input[name="epreuve"]:checked');
-    
-    let prixUnitaire = 0;
-    if (choix) {
-        const valeur = choix.value;
-        prixUnitaire = (valeur === "semi") ? 90 : 120;
-    }
-
-    // 3. Calcul total
-    const totalPrix = nombreParticipants * prixUnitaire;
-
-    // 4. Mise à jour de l'affichage
-    document.querySelector("#participants").textContent = `Nombre de participants : ${nombreParticipants}`;
-    document.querySelector("#montant").textContent = `Montant total : ${totalPrix}€`;
-}
-
-// On s'assure que le calcul se met à jour quand on change d'épreuve
-// OU quand on ajoute un participant
-document.addEventListener("change", (e) => {
-    if (e.target.name === "epreuve") {
-        mettreAJourPanier();
-    }
-});
-
-// Appeler le calcul initial au chargement
-mettreAJourPanier();
-
-// --- FONCTION DE VALIDATION (Active/Désactive le bouton d'ajout) ---
-
-// function checkFormValidity() {
-//     const isValid = form.checkValidity();
-//     btnAdd.disabled = !isValid;
-//     btnAdd.style.opacity = isValid ? "1" : "0.5";
-// }
-
-// form.addEventListener('input', checkFormValidity);
-
-// // 3. APPARITION DU BOUTON SUPPRIMER
-// // On cible le bouton dans le nouveau bloc et on l'affiche
-// const deleteBtn = newItem.querySelector('.supprime');
-// deleteBtn.style.display = 'block';
-
-// // 4. On ajoute le nouveau bloc à la liste
-// participantsList.appendChild(newItem);
-
-// // On désactive le bouton "Ajouter" car le nouveau participant n'est pas encore rempli
-// checkFormValidity();
-
-// // --- SUPPRIMER UN PARTICIPANT ---
-// participantsList.addEventListener('click', (e) => {
-//     if (e.target.classList.contains('supprime')) {
-//         // Supprime le bloc parent
-//         e.target.closest('.participant-item').remove();
-
-//         // Après suppression, on vérifie si le bouton "Ajouter" doit être réactivé
-//         checkFormValidity();
-//     }
-// });
