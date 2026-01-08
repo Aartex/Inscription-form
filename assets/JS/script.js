@@ -56,7 +56,7 @@ btnSup.addEventListener("click", () => {
         // Supprime le dernier bloc
         blocs[blocs.length - 1].remove();
 
-        // --- AJOUT ICI ---
+    
         // Si après suppression il ne reste qu'un seul bloc, on remet le texte initial
         const blocsRestants = document.querySelectorAll(".participant-block");
         if (blocsRestants.length === 1) {
