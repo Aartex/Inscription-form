@@ -61,10 +61,11 @@ function mettreAJourPanier() {
     // 1. Compter tous les blocs de participants présents
     const nombreParticipants = document.querySelectorAll(".participant-block").length;
 
-    // 2. Chercher la radio cochée dans tout le document
-    const choix = document.querySelector('input[name="epreuve"]:checked');
+    // On force le script à regarder UNIQUEMENT le choix du premier participant
+    const premierBloc = document.querySelector(".participant-block");
+    const choix = premierBloc.querySelector('input[name="epreuve"]:checked');
+    
     let prixUnitaire = 0;
-
     if (choix) {
         const valeur = choix.value;
         prixUnitaire = (valeur === "semi") ? 90 : 120;
@@ -91,32 +92,32 @@ mettreAJourPanier();
 
 // --- FONCTION DE VALIDATION (Active/Désactive le bouton d'ajout) ---
 
-function checkFormValidity() {
-    const isValid = form.checkValidity();
-    btnAdd.disabled = !isValid;
-    btnAdd.style.opacity = isValid ? "1" : "0.5";
-}
+// function checkFormValidity() {
+//     const isValid = form.checkValidity();
+//     btnAdd.disabled = !isValid;
+//     btnAdd.style.opacity = isValid ? "1" : "0.5";
+// }
 
-form.addEventListener('input', checkFormValidity);
+// form.addEventListener('input', checkFormValidity);
 
-// 3. APPARITION DU BOUTON SUPPRIMER
-// On cible le bouton dans le nouveau bloc et on l'affiche
-const deleteBtn = newItem.querySelector('.supprime');
-deleteBtn.style.display = 'block';
+// // 3. APPARITION DU BOUTON SUPPRIMER
+// // On cible le bouton dans le nouveau bloc et on l'affiche
+// const deleteBtn = newItem.querySelector('.supprime');
+// deleteBtn.style.display = 'block';
 
-// 4. On ajoute le nouveau bloc à la liste
-participantsList.appendChild(newItem);
+// // 4. On ajoute le nouveau bloc à la liste
+// participantsList.appendChild(newItem);
 
-// On désactive le bouton "Ajouter" car le nouveau participant n'est pas encore rempli
-checkFormValidity();
+// // On désactive le bouton "Ajouter" car le nouveau participant n'est pas encore rempli
+// checkFormValidity();
 
-// --- SUPPRIMER UN PARTICIPANT ---
-participantsList.addEventListener('click', (e) => {
-    if (e.target.classList.contains('supprime')) {
-        // Supprime le bloc parent
-        e.target.closest('.participant-item').remove();
+// // --- SUPPRIMER UN PARTICIPANT ---
+// participantsList.addEventListener('click', (e) => {
+//     if (e.target.classList.contains('supprime')) {
+//         // Supprime le bloc parent
+//         e.target.closest('.participant-item').remove();
 
-        // Après suppression, on vérifie si le bouton "Ajouter" doit être réactivé
-        checkFormValidity();
-    }
-});
+//         // Après suppression, on vérifie si le bouton "Ajouter" doit être réactivé
+//         checkFormValidity();
+//     }
+// });
