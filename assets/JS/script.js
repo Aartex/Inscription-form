@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const formContainer = document.querySelector(".container");
     const buttonGroup = document.querySelector(".button-form");
 
+for (let i = 16; i <= 99; i++) {
+    document.getElementById('age').innerHTML += '<option value="' + i + '">' + i + ' ans</option>';
+}
+
     // 1. Fonction de mise à jour du panier
     function mettreAJourPanier() {
         // On compte tous les blocs de participants (nom, prénom, etc.)
