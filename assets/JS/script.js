@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     blocs[index].remove(); // Supprime le bloc correspondant à l'index cliqué
                     mettreAJourPanier();
                 } else {
-                    alert("Impossible de supprimer le dernier participant.");
+                    alert("Impossible de supprimer le premier participant.");
                 }
             }
         });
