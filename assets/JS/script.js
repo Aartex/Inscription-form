@@ -26,26 +26,26 @@ document.addEventListener("DOMContentLoaded", function () {
         let tousRemplis = true;
         const blocs = document.querySelectorAll(".participant-block");
 
-// 1. On vérifie si une épreuve est cochée
-    const epreuveCochee = document.querySelector('input[name="epreuve"]:checked');
-    if (!epreuveCochee) {
-        tousRemplis = false;
-    }
-
-    // 2. On vérifie si tous les champs de chaque participant sont remplis
-    blocs.forEach(function (bloc) {
-        const nom = bloc.querySelector('input[name="nom"]').value.trim();
-        const prenom = bloc.querySelector('input[name="prenom"]').value.trim();
-        const email = bloc.querySelector('input[name="email"]').value.trim();
-        const age = bloc.querySelector('select[name="age"]').value;
-
-        if (!nom || !prenom || !age || !email) {
+        // 1. On vérifie si une épreuve est cochée
+        const epreuveCochee = document.querySelector('input[name="epreuve"]:checked');
+        if (!epreuveCochee) {
             tousRemplis = false;
         }
-    });
 
-    // 3. On applique l'état au bouton
-    btnAjouter.disabled = !tousRemplis;
+        // 2. On vérifie si tous les champs de chaque participant sont remplis
+        blocs.forEach(function (bloc) {
+            const nom = bloc.querySelector('input[name="nom"]').value.trim();
+            const prenom = bloc.querySelector('input[name="prenom"]').value.trim();
+            const email = bloc.querySelector('input[name="email"]').value.trim();
+            const age = bloc.querySelector('select[name="age"]').value;
+
+            if (!nom || !prenom || !age || !email) {
+                tousRemplis = false;
+            }
+        });
+
+        // 3. On applique l'état au bouton
+        btnAjouter.disabled = !tousRemplis;
     }
 
     // ==========================================
@@ -66,8 +66,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 const prenom = bloc.querySelector('input[name="prenom"]').value || "";
                 const affichageNom = (nom || prenom) ? prenom + " " + nom : "Participant " + (index + 1);
 
+                let mentionCapitaine = ""; // Ajout de la mention capitaine
+                if (blocs.length > 1 && index === 0) {
+                    const styleCouleur = "color: #407ac9; font-style: italic; margin-left: 5px;";
+                    mentionCapitaine = `<span style="${styleCouleur}">(Capitaine de l'équipe)</span>`;
+                }
                 const li = document.createElement("li");
-                li.innerHTML = `<span>${affichageNom}</span>
+                li.style.marginBottom = "8px";
+                li.innerHTML = `<span>${affichageNom}${mentionCapitaine}</span>
                                 <button class="delete-btn" data-index="${index}" style="color:red; cursor:pointer; border:none; background:none;">✖</button>`;
                 listeParticipantsUI.appendChild(li);
             });
@@ -87,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let estValide = true;
         const messagesErreur = [];
         const epreuveCochee = document.querySelector('input[name="epreuve"]:checked');
-        
+
         if (!epreuveCochee) {
             estValide = false;
             messagesErreur.push("Veuillez choisir une épreuve.");
@@ -124,13 +130,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     btnAjouter.addEventListener("click", function () {
         const blocs = document.querySelectorAll(".participant-block");
-        const blocACloner = blocs[0]; 
+        const blocACloner = blocs[0];
         const clone = blocACloner.cloneNode(true);
         const uniqueId = Date.now();
 
         clone.querySelectorAll("input, select").forEach(function (input) {
             if (input.id) input.id = input.id + "_" + uniqueId;
-            input.value = ""; 
+            input.value = "";
         });
 
         formContainer.insertBefore(clone, buttonGroup);
