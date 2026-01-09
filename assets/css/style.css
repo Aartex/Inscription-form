@@ -238,3 +238,9 @@ footer {
     width: 100%;
     background-color: lightblue;
 }
+
+.equipe:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
