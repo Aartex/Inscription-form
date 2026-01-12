@@ -59,26 +59,35 @@ document.addEventListener("DOMContentLoaded", function () {
             prixUnitaire = (choix.value === "semi") ? 90 : 120;
         }
 
-        // if (listeParticipantsUI) {
-        //     listeParticipantsUI.innerHTML = "";
-        //     blocs.forEach(function (bloc, index) {
-        //         const nom = (bloc.querySelector('input[name="nom"]').value || "").toUpperCase();
-        //         const prenom = bloc.querySelector('input[name="prenom"]').value || "";
-        //         const affichageNom = (nom || prenom) ? prenom + " " + nom : "Participant " + (index + 1);
+if (listeParticipantsUI) {
+    // On vide la liste avant de la reconstruire
+    listeParticipantsUI.innerHTML = "";
 
-        //         let mentionCapitaine = ""; // Ajout de la mention capitaine
-        //         if (blocs.length > 1 && index === 0) {
-        //             const styleCouleur = "color: #407ac9; font-style: italic; margin-left: 5px;";
-        //             mentionCapitaine = `<span style="${styleCouleur}">(Capitaine de l'équipe)</span>`;
-        //         }
-        //         const li = document.createElement("li");
-        //         li.style.marginBottom = "8px";
-        //         li.innerHTML = `<span>${affichageNom}${mentionCapitaine}</span>
-        //                         <button class="delete-btn" data-index="${index}" style="color:red; cursor:pointer; border:none; background:none;">✖</button>`;
-        //         listeParticipantsUI.appendChild(li);
-        //     });
-        // }
+    blocs.forEach(function (bloc, index) {
+        const nom = (bloc.querySelector('input[name="nom"]').value || "").toUpperCase();
+        const prenom = bloc.querySelector('input[name="prenom"]').value || "";
+        const affichageNom = (nom || prenom) ? prenom + " " + nom : "Participant " + (index + 1);
 
+        // 1. Définition de la mention capitaine (vide par défaut)
+        let htmlCapitaine = ""; 
+        if (blocs.length > 1 && index === 0) {
+            htmlCapitaine = `<span class="mention-capitaine">(Capitaine de l'équipe)</span>`;
+        }
+
+        // 2. Création de l'élément de liste
+        const li = document.createElement("li");
+        li.className = "participant-item"; // Classe pour le style du <li>
+        
+        // 3. Injection du contenu HTML
+        li.innerHTML = `
+            <span class="nom-participant">${affichageNom}${htmlCapitaine}</span>
+            <button class="delete-btn" data-index="${index}">✖</button>
+        `;
+
+        // 4. Ajout au DOM
+        listeParticipantsUI.appendChild(li);
+    });
+}
         const totalPrix = blocs.length * prixUnitaire;
         document.querySelector("#participants").textContent = "Nombre de participants : " + blocs.length;
         document.querySelector("#montant").textContent = "Montant total : " + totalPrix + "€";
